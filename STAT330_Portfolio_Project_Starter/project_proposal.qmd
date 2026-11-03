@@ -1,0 +1,95 @@
+---
+title: "Final Project Proposal"
+subtitle: "STAT 330"
+author: "Jason Wright, Joseph Jeffery, Sam Doney"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true
+    code-summary: "Show code"
+    embed-resources: true
+execute:
+  warning: false
+  message: false
+---
+
+## Question and audience
+
+Question: What are the most relevant factors for predicting a customer's annual health insurance charges?
+
+The intended audience is an insurance company, and this question is relevant for them because understanding which customer characteristics are associated with health insurance charges can help them estimate expected costs. Some key candidate predictors include `smoker`, `age`, and `bmi`, with the response being `charges`.
+
+
+## Data
+
+The observational unit is a customer. The dimensions are 1338 x 7. The response is `charges`. `smoker`, `age`, `bmi`, `sex`, `region`, and `children` are all candidate predictors. The data should be able to answer our question because it considers relevant factors in a person's healthcare costs. The data is also publicly available.
+
+Link to CSV:
+https://www.kaggle.com/code/shubhamptrivedi/health-insurance-price-predict-linear-regression/input
+
+```{r}
+library(tidyverse)
+library(corrplot)
+health_insurance <- read.csv("Health_insurance.csv")
+summary(health_insurance)
+glimpse(health_insurance)
+```
+
+
+## One useful first look
+
+```{r}
+interaction.plot(
+  x.factor = health_insurance$sex,
+  trace.factor = health_insurance$smoker,
+  response = health_insurance$charges,
+  fun = mean,
+  type = "b",
+  col = c("steelblue", "darkorange"),
+  pch = 16,
+  xlab = "Gender",
+  ylab = "Mean charges ($)",
+  trace.label = "Smoker",
+  main = "Mean Charges by Gender and Smoking Status"
+)
+```
+
+This interaction plot simultaneously show that the charges for smokers are higher than non-smokers, and that this effect is stronger for men than for women. Interestingly, the mean charges for men are lower without smoking and higher with smoking, when compared to women. 
+
+
+## Baseline model
+
+This baseline model includes all the predictors available in the data set; this was done to take a general look at each of the factors.
+
+```{r}
+health_insurance <- health_insurance |>
+  dplyr::mutate(
+    sex = factor(sex),
+    smoker = factor(smoker),
+    region = factor(region)
+  )
+
+insurance_base_mod <- lm(charges ~ age + sex + bmi + children + smoker + region, data = health_insurance)
+summary(insurance_base_mod)
+```
+
+Holding all other predictors constant, smokers are estimated to have about $23,849 higher annual charges on average than non-smokers. One opportunity for improvement that could be made is to incorporate the slight differences in interactions between smoker status and gender as seen in the above plot into the model.
+
+
+## Where the analysis could go
+
+1. **Validation and Comparison:** A quick inspection of the data suggests that the response, `charges`, is highly volatile. Because our objective focuses on prediction, cross-validation and model comparison are essential to finding the model with the best predictive capabilities. There aren't many predictors available, so accuracy will be the priority over model simplicity. 
+
+2. **Model Structure:** With how much `charges` varies, a log-level model may be more accurate. In addition, it's likely that many of these predictors have significant interactions with one another. Accounting for these may help strengthen our models' predictive capabilities and improve the overall appropriateness of a linear model.
+
+
+## AI disclosure and sources
+
+- AI used to correct grammar and address exaggerated claims in the **Where the analysis could go** section.
+
+- AI used in coding the interaction plot.
+
+- AI used to mutate predictors before making the baseline model.
+
+- CSV available on kaggle at:  https://www.kaggle.com/code/shubhamptrivedi/health-insurance-price-predict-linear-regression/input
