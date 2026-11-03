@@ -1,8 +1,8 @@
 ---
-title: "Replace with a specific, informative title"
-subtitle: "Replace with one sentence that tells readers why the question matters"
-author: "Replace with all group members' names"
-date: last-modified
+title: "Identifying the Most Relevant Factors for Predicting a Customer's Annual Health Insurance Charges"
+subtitle: "Understanding which customer characteristics are associated with health insurance charges can help insurance companies and customers estimate expected charges and costs"
+author: "Jason Wright, Joseph Jeffery, Sam Doney"
+date: "Nov 3, 2026"
 description: "Replace with a brief description for link previews."
 ---
 
