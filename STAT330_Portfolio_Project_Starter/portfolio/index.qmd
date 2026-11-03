@@ -3,7 +3,7 @@ title: "Identifying the Most Relevant Factors for Predicting a Customer's Annual
 subtitle: "Understanding which customer characteristics are associated with health insurance charges can help insurance companies and customers estimate expected charges and costs"
 author: "Jason Wright, Joseph Jeffery, Sam Doney"
 date: "Nov 3, 2026"
-description: "Replace with a brief description for link previews."
+description: "An analysis of customer characteristics associated with insurance charges using linear models and random forests."
 ---
 
 **Narrative word count:** Replace with a number from 750 to 1,000.
