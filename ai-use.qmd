@@ -4,36 +4,42 @@ description: "A concise record of AI-supported work on this project."
 author: "Sam Doney, Joseph Jeffery, Jason Wright"
 ---
 
-This page is a work log, not a second report. Short bullets are welcome. It is separate from the final case study and does not count toward the 750 to 1,000 word range.
-
 ## Starting point
 
-**AI system and date:** Replace.
+**AI system and date:** ChatGPT (GPT-6 Luna High)
 
-**Before using AI for the required extension, briefly state your question, course-based core model, baseline result, and the specific limitation or opportunity you wanted to address.**
+- Research Question: What are the most relevant factors for predicting a customer's annual health insurance charges?
+
+- Baseline Model: insurance_base_mod <- lm(charges ~ age + sex + bmi + children + smoker + region, data = health_insurance)
+
+- Baseline Result: 
+Residual standard error: 6062 on 1329 degrees of freedom
+Multiple R-squared:  0.7509,    Adjusted R-squared:  0.7494 
+F-statistic: 500.8 on 8 and 1329 DF,  p-value: < 2.2e-16
+
+- Limitation to Address: One opportunity for improvement is to incorporate the slight differences in interactions between smoker status and gender into the model.
 
 ## Substantive prompts
 
-Paste the exact prompts that shaped the extension. Include the customized extension-selection prompt from the checkpoint and any important implementation follow-ups. Delete unused prompt blocks.
-
-> Replace with an exact prompt.
-
-> Replace with another exact prompt, if needed.
+> I am creating a regression case study in R and Quarto. My question is "What are the most relevant factors for predicting a customer's annual health insurance charges?". The response is `charges` (continuous numeric variable), the main predictors are `age`, `sex`, `bmi`, `children`, `smoker`, and `region`, and my course-based core model is `lm(charges ~ age + sex + bmi + children + smoker + region, data = health_insurance)`. My main result so far is: Residual standard error: 6062 on 1329 degrees of freedom; Multiple R-squared: 0.7509; Adjusted R-squared: 0.7494; F-statistic: 500.8 on 8 and 1329 DF; p-value: < 2.2e-16. I found this limitation or opportunity: One opportunity for improvement is to incorporate the slight differences in interactions between smoker status and gender into the model. Suggest three feasible extensions that keep the core analysis connected to regression methods taught in my class. One option may be a model not taught in class used as a comparator. For each, explain how it strengthens the same research question, how its result would enter the final case study, the implementation steps, and two ways I could verify it. Do not choose for me.
 
 ## My decisions
 
-- **Accepted:** What useful advice did you use?
-- **Changed:** What did you adapt to fit your data or goals?
-- **Rejected or corrected:** What advice was unsuitable, unnecessary, or wrong?
+- **Accepted:** It suggested we use a random forest to capture nonlinear patterns and interactions that the baseline formula may miss. It also suggested incorporating interactions into the model.
+- **Changed:** Of the suggestions listed above, no changes needed to be made to the extension or its verifications.
+- **Rejected or corrected:** It wanted to square the `age` and `bmi` predictors which may not be necessary, or atleast more research would have to be done before assuming that it is.
 
 **Connection to the final case study:** Identify where the extension's method and result appear on the final page and how they strengthen the course-based analysis.
+- 
 
 ## Independent verification
 
 1. **Check and result:** Replace with an official source, diagnostic, simulation, manual calculation, comparison with a known method, or another suitable check.
+- Check: Compare the random forest and baseline regression using cross-validated RMSE on the same folds.
+- Result: 
 2. **Check and result:** Replace with a different check and what you learned.
-
-Link or cite verification sources where appropriate. A second AI response does not count as independent verification.
+- Check: Check whether the model’s performance and variable-importance rankings are reasonably stable across different resamples or random seeds.
+- Result: 
 
 ## Remaining limitation
 
@@ -41,4 +47,4 @@ Link or cite verification sources where appropriate. A second AI response does n
 
 ## Other AI use, if any
 
-**Briefly disclose earlier debugging, proofreading, or other AI assistance. Write “None” if there was no other use.**
+- None
