@@ -64,7 +64,7 @@ Details are in the [AI-use record](ai-use.qmd).
 
 ## Data and code
 
-- **Data:** Replace with a working source link or citation and any brief acquisition note needed to reproduce the project.
+- **Data:** https://www.kaggle.com/code/ruslankl/health-care-cost-prediction-w-linear-regression
 - **Repository:** Replace with your repository URL.
 - [AI-use record](ai-use.qmd)
 - **Other sources:** Cite package documentation, articles, code, and other sources that materially informed the work.
